@@ -1,0 +1,9 @@
+<h1>Daily Reports List:</h1>
+
+<%= render @daily_reports %>
+
+<% unless admin? %>
+
+  <%= link_to "File New Report", new_daily_report_url %>
+
+<% end %>

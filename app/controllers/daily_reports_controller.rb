@@ -1,7 +1,11 @@
 class DailyReportsController < ApplicationController
 
   def index
-    @daily_reports = current_user.daily_reports
+    if admin?
+      @daily_reports = current_user.student_daily_reports
+    else
+      @daily_reports = current_user.daily_reports
+    end
     render :index
   end
 
@@ -39,6 +43,11 @@ class DailyReportsController < ApplicationController
     end
   end
 
+  def show
+    @daily_report = DailyReport.find(params[:id])
+    # @DRComments = @daily_report.comments
+    render :show
+  end
   private
 
   def report_params

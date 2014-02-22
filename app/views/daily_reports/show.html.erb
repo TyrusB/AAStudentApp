@@ -1,0 +1,63 @@
+<!-- t.boolean  "finished_exercises"
+t.boolean  "read_solutions"
+t.boolean  "read_tomorrows_readings"
+t.integer  "rating_of_understanding"
+t.string   "easiest_concept"
+t.string   "hardest_concept"
+t.string   "pair_name"
+t.integer  "pair_rating"
+t.text     "pair_comments"
+t.text     "daily_comments" -->
+
+
+<h3>Daily Report <%= @daily_report.week_day %><h3>
+
+
+<p>Finished Exercises<p>
+<p><%= @daily_report.finished_exercises %></p>
+<br>
+
+<p>Read Solutions?<p>
+<p><%= @daily_report.read_solutions %></p>
+<br>
+
+<p>Read tomorrow's readings?<p>
+<p><%= @daily_report.read_tomorrows_readings %></p>
+<br>
+
+<p>Rating of understanding of today's material:</p>
+<p><%= @daily_report.rating_of_understanding %></p>
+<br>
+
+<% unless @daily_report.easiest_concept.nil? %>
+<p>Easiest Concept:</p>
+<p><%= @daily_report.easiest_concept %></p>
+<br>
+<% end %>
+
+<% unless @daily_report.hardest_concept.nil? %>
+<p>Hardest Concept:</p>
+<p><%= @daily_report.hardest_concept %></p>
+<br>
+<% end %>
+
+<p>Partner Name:</p>
+<p><%= @daily_report.pair_name %></p>
+<br>
+
+<p>Partner experience rating:</p>
+<p><%= @daily_report.pair_rating %></p>
+<br>
+
+<% unless @daily_report.pair_comments.nil? %>
+<p>Easiest Concept:</p>
+<p><%= @daily_report.pair_comments %></p>
+<br>
+<% end %>
+
+<p>Daily Comments:</p>
+<p><%= @daily_report.daily_comments %></p>
+<br>
+
+<!-- <%= render @DRComments %> -->
+

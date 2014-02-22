@@ -28,4 +28,9 @@ class DailyReport < ActiveRecord::Base
   belongs_to :user
 
 
+  def week_day
+    "Week #{self.week}- Day #{self.day}"
+  end
+
+
 end
