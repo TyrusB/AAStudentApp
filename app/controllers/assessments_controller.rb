@@ -1,4 +1,4 @@
-class AssignmentsController < ApplicationController
+class AssessmentsController < ApplicationController
   def new
     # require TA
   end
