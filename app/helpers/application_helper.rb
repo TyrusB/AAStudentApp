@@ -26,4 +26,8 @@ module ApplicationHelper
     !current_user.nil?
   end
 
+  def admin?
+    current_user.is_admin
+  end
+
 end

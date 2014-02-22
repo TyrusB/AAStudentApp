@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id              :integer          not null, primary key
-#  email           :string(255)      not null
-#  name            :string(255)      not null
-#  session_token   :string(255)      not null
-#  password_digest :string(255)      not null
-#  ta_id           :integer
-#  created_at      :datetime
-#  updated_at      :datetime
-#
-
 class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
@@ -33,7 +19,8 @@ class User < ActiveRecord::Base
     primary_key: :id
   )
 
-  has_many :daily_reports
+  has_many :daily_reports, -> {order "week DESC, day DESC"}
+  has_many :student_daily_reports, :through => :assigned_students, :source => :daily_reports
 
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)

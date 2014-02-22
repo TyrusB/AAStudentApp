@@ -1,8 +1,10 @@
 <% if logged_in? %>
   <div>Welcome back, <%= current_user.name %></div>
-  <p>Please select an action:</p>
-  <%= link_to "File a Daily Progress Report", new_daily_report_url %>
-
+  <% if current_user.admin? %>
+    <%= render 'admin_homepage' %>
+  <% else %>
+    <%= render 'student_homepage' %>
+  <% end %>
 <% else %>
   <div>Welcome to the App Academy student app!</div>
   <%= link_to "Please log in to proceed", new_session_url %>
