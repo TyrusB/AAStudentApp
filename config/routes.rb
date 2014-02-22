@@ -8,7 +8,10 @@ AAStudentApp::Application.routes.draw do
   resources :daily_reports, :except => [:index]
 
   resources :assessments do
-    resources :submissions, :only => [:show]
+    resources :submissions, :only => [:show] do
+      resources :annotations, :only => [:create]
+      resources :comments, :only => [:create]
+    end
   end
 
 end
