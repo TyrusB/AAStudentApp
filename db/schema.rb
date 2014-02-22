@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222183505) do
+ActiveRecord::Schema.define(version: 20140222194509) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "assessments", force: true do |t|
+    t.string   "name",         null: false
+    t.integer  "cohort_id",    null: false
+    t.string   "description"
+    t.datetime "start_time"
+    t.integer  "duration"
+    t.integer  "maximum_mark", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "daily_reports", force: true do |t|
     t.integer  "week"
@@ -34,10 +42,17 @@ ActiveRecord::Schema.define(version: 20140222183505) do
     t.datetime "updated_at"
   end
 
-  add_index "daily_reports", ["day"], name: "index_daily_reports_on_day", using: :btree
-  add_index "daily_reports", ["user_id"], name: "index_daily_reports_on_user_id", using: :btree
-  add_index "daily_reports", ["week", "day", "user_id"], name: "index_daily_reports_on_week_and_day_and_user_id", unique: true, using: :btree
-  add_index "daily_reports", ["week"], name: "index_daily_reports_on_week", using: :btree
+  add_index "daily_reports", ["day"], name: "index_daily_reports_on_day"
+  add_index "daily_reports", ["user_id"], name: "index_daily_reports_on_user_id"
+  add_index "daily_reports", ["week", "day", "user_id"], name: "index_daily_reports_on_week_and_day_and_user_id", unique: true
+  add_index "daily_reports", ["week"], name: "index_daily_reports_on_week"
+
+  create_table "submissions", force: true do |t|
+    t.integer  "assessment_id", null: false
+    t.integer  "user_id",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                           null: false
@@ -50,9 +65,9 @@ ActiveRecord::Schema.define(version: 20140222183505) do
     t.boolean  "is_admin",        default: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
-  add_index "users", ["name"], name: "index_users_on_name", using: :btree
-  add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
-  add_index "users", ["ta_id"], name: "index_users_on_ta_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["name"], name: "index_users_on_name"
+  add_index "users", ["session_token"], name: "index_users_on_session_token"
+  add_index "users", ["ta_id"], name: "index_users_on_ta_id"
 
 end

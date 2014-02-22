@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   has_many :daily_reports, -> {order "week DESC, day DESC"}
   has_many :student_daily_reports, :through => :assigned_students, :source => :daily_reports
 
+  has_many :student_daily_reports,
+                  :through => :assigned_students,
+                  :source => :daily_reports
+
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
   end
