@@ -6,4 +6,9 @@ AAStudentApp::Application.routes.draw do
     resources :daily_reports, :only => [:index]
   end
   resources :daily_reports, :except => [:index]
+
+  resources :assessments do
+    resources :submissions, :only => [:show]
+  end
+
 end

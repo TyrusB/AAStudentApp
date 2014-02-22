@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
                   :source => :daily_reports
 
   def password=(password)
-    self.password_digest = BCrypt::Password.cregitate(password)
+    self.password_digest = BCrypt::Password.create(password)
   end
 
   def is_password?(password)
@@ -54,6 +54,10 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = User.generate_session_token
     self.save!
+  end
+
+  def admin?
+    self.is_admin
   end
 
   #returns either nil or user object

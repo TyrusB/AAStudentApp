@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222194509) do
+ActiveRecord::Schema.define(version: 20140222220539) do
+
+  create_table "annotations", force: true do |t|
+    t.integer  "source_file_id"
+    t.string   "body"
+    t.integer  "start_pos"
+    t.integer  "end_pos"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assessments", force: true do |t|
     t.string   "name",         null: false
@@ -20,6 +30,14 @@ ActiveRecord::Schema.define(version: 20140222194509) do
     t.datetime "start_time"
     t.integer  "duration"
     t.integer  "maximum_mark", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.integer  "annotation_id"
+    t.integer  "user_id"
+    t.string   "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,6 +64,14 @@ ActiveRecord::Schema.define(version: 20140222194509) do
   add_index "daily_reports", ["user_id"], name: "index_daily_reports_on_user_id"
   add_index "daily_reports", ["week", "day", "user_id"], name: "index_daily_reports_on_week_and_day_and_user_id", unique: true
   add_index "daily_reports", ["week"], name: "index_daily_reports_on_week"
+
+  create_table "source_files", force: true do |t|
+    t.string   "file_path",     null: false
+    t.string   "body",          null: false
+    t.integer  "submission_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "submissions", force: true do |t|
     t.integer  "assessment_id", null: false

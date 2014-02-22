@@ -8,5 +8,5 @@
 <% end %>
 
 <script>
-  var annotations = <%= @annotations_json %>
+  var annotations = [<%= raw @annotations_json %>]
 </script>

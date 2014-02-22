@@ -8,6 +8,6 @@ class Submission < ActiveRecord::Base
   has_many :annotations, :through => :source_files, :source => :annotations
 
   def annotations_json
-    self.annotations.map(&:to_json)
+    self.annotations.map(&:to_json).to_a.join(",")
   end
 end
