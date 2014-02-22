@@ -30,4 +30,10 @@ module ApplicationHelper
     current_user.is_admin
   end
 
+  def require_login
+    if current_user.nil?
+      redirect_to :root
+    end
+  end
+
 end

@@ -1,0 +1,12 @@
+<h1>Assessment Files</h1>
+
+<% @source_files.each do |source_file| %>
+  <h4><%= source_file.file_path %></h4>
+  <div class='file' id='<%= source_file.sanitized_file_path %>'>
+    <pre><%= source_file.body %></pre>
+  </div>
+<% end %>
+
+<script>
+  var annotations = <%= @annotations_json %>
+</script>

@@ -22,7 +22,6 @@ class AssessmentsController < ApplicationController
   end
 
   def index
-
     @assessments = Assessment.where(:cohort_id => current_user.cohort_id)
   end
 
