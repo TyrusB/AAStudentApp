@@ -1,0 +1,88 @@
+<% action_url = (action == :new ? daily_reports_url : daily_report_url(daily_report)) %>
+
+<form action='<%= action_url %>' method='post'>
+  <% if action == :edit %>
+    <input type='hidden' name='_method' value='put'>
+  <% end %>
+
+  <input type='hidden' name="authenticity_token" value='<%= form_authenticity_token %>'>
+
+  <label for="daily_report_week">Week</label>
+  <select name="daily_report[week]" id="daily_report_week" />
+    <% (1..12).each do |num| %>
+      <option value='<%= num %>'
+        <%= 'selected="selected"' if daily_report.week == num %>>
+        <%= num %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="daily_report_day">Day</label>
+  <select name="daily_report[day]" id="daily_report_day" />
+    <% (1..5).each do |day| %>
+      <option value='<%= day %>'
+        <%= 'selected="selected"' if daily_report.day == day %>>
+        <%= day %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <p>Finished Daily Exercises?</p>
+  <input type='radio' name='daily_report[finished_exercises]' value='t'
+    <%= 'checked="checked"' if daily_report.finished_exercises == 't' %>>True<br />
+  <input type='radio' name='daily_report[finished_exercises]' value='f'
+     <%= 'checked="checked"' if daily_report.finished_exercises == 'f' %>>False<br />
+
+    <!-- TO DO... implement radio button persistence. Above doesn't work -->
+  <p>Read Solutions?</p>
+  <input type='radio' name='daily_report[read_solutions]' value='t'>True<br />
+  <input type='radio' name='daily_report[read_solutions]' value='f'>False<br />
+
+  <p>Read Tomorrow's Readings?</p>
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='t'>True<br />
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='f'>False<br />
+  <br>
+
+  <label for="daily_report_rating_of_understanding">Rating of your understanding of today's material:</label>
+  <select name="daily_report[rating_of_understanding]" id="daily_report_rating_of_understanding" />
+    <% (1..5).each do |num| %>
+      <option value='<%= num %>'
+        <%= 'selected="selected"' if daily_report.rating_of_understanding == num %>>
+        <%= num %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="daily_report_easiest_concept">Concept you understood best:</label>
+  <input type="text" name="daily_report[easiest_concept]" value="<%= daily_report.easiest_concept %>" id="daily_report_easiest_concept">
+  <br>
+
+  <label for="daily_report_hardest_concept">Concept you had the most trouble with:</label>
+  <input type="text" name="daily_report[hardest_concept]" value="<%= daily_report.hardest_concept %>" id="daily_report_hardest_concept">
+  <br>
+
+  <label for="daily_report_pair_name">Name of your partner:</label>
+  <input type="text" name="daily_report[pair_name]" value="<%= daily_report.pair_name %>" id="daily_report_pair_name">
+  <br>
+
+  <label for="daily_report_pair_rating">Rate your pair experience for today:</label>
+  <select name="daily_report[pair_rating]" id="daily_report_pair_rating" />
+    <% (1..5).each do |num| %>
+      <option value='<%= num %>'
+        <%= 'selected="selected"' if daily_report.pair_rating == num %>>
+        <%= num %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="daily_report_pair_comments">Comments on your pair experience:</label>
+  <textarea name="daily_report[pair_comments]" id="daily_report_pair_comments"><%= daily_report.pair_comments %></textarea>
+  <br>
+
+  <label for="daily_report_daily_comments">Comments on today's material, your understanding, or feedback on what we could do better:</label>
+  <textarea name="daily_report[daily_comments]" id="daily_report_daily_comments"><%= daily_report.daily_comments %>"</textarea>
+  <br>
+
+  <input type='submit' value='File this report' />
+
+</form>

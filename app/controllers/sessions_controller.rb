@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Logged in!"
       # REDIRECT GOES HERE - throws error for now
     else
-      flash[:error] = "Invalid credentials"
+      flash[:errors] = @user.errors.full_messages
       render :new
     end
   end
