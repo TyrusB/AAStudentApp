@@ -1,0 +1,96 @@
+
+<!--
+# == Schema Information
+#
+# Table name: daily_reports
+#
+#  id                      :integer          not null, primary key
+#  week                    :integer
+#  day                     :integer
+#  finished_exercises      :boolean
+#  read_solutions          :boolean
+#  read_tomorrows_readings :boolean
+#  rating_of_understanding :integer
+#  easiest_concept         :string(255)
+#  most_difficult_concept  :string(255)
+#  pair_name               :string(255)
+#  pair_rating             :integer
+#  pair_comments           :text
+#  daily_comments          :text
+#  user_id                 :integer
+#  created_at              :datetime
+#  updated_at              :datetime
+#
+-->
+
+<h1>Daily Progress Report</h1>
+<form action='<%= daily_reports_url %>' method='post'>
+  <input type='hidden' name="authenticity_token" value='<%= form_authenticity_token %>'>
+
+  <label for="daily_report_week">Week</label>
+  <select name="daily_report[week]" id="daily_report_week" />
+    <% (1..12).each do |num| %>
+      <option value='<%= num %>'><%= num %></option>
+    <% end %>
+  </select>
+  <br>
+  <label for="daily_report_day">Day</label>
+  <select name="daily_report[day]" id="daily_report_day" />
+    <% (1..5).each do |day| %>
+      <option value='<%= day %>'><%= day %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <p>Finished Daily Exercises?</p>
+  <input type='radio' name='daily_report[finished_excercises]' value='t'>True<br />
+  <input type='radio' name='daily_report[finished_excercises]' value='f'>False<br />
+
+  <p>Read Solutions?</p>
+  <input type='radio' name='daily_report[read_solutions]' value='t'>True<br />
+  <input type='radio' name='daily_report[read_solutions]' value='f'>False<br />
+
+  <p>Read Tomorrow's Readings?</p>
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='t'>True<br />
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='f'>False<br />
+  <br>
+
+  <label for="daily_report_rating_of_understanding">Rating of your understanding of today's material:</label>
+  <select name="daily_report[rating_of_understanding]" id="daily_report_rating_of_understanding" />
+    <% (1..5).each do |num| %>
+      <option value='<%= num %>'><%= num %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="daily_report_easiest_concept">Concept you understood best:</label>
+  <input type="text" name="daily_report[easiest_concept]" value="" id="daily_report_easiest_concept">
+  <br>
+
+  <label for="daily_report_hardest_concept">Concept you had the most trouble with:</label>
+  <input type="text" name="daily_report[hardest_concept]" value="" id="daily_report_hardest_concept">
+  <br>
+
+  <label for="daily_report_pair_name">Name of your partner:</label>
+  <input type="text" name="daily_report[pair_name]" value="" id="daily_report_pair_name">
+  <br>
+
+  <label for="daily_report_pair_rating">Rate your pair experience for today:</label>
+  <select name="daily_report[pair_rating]" id="daily_report_pair_rating" />
+    <% (1..5).each do |num| %>
+      <option value='<%= num %>'><%= num %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="daily_report_pair_comments">Comments on your pair experience:</label>
+  <textarea name="daily_report[pair_comments]" value="" id="daily_report_pair_comments"></textarea>
+  <br>
+
+  <label for="daily_report_daily_comments">Comments on today's material, your understanding, or feedback on what we could do better:</label>
+  <textarea name="daily_report[daily_comments]" value="" id="daily_report_daily_comments"></textarea>
+  <br>
+
+  <input type='submit' value='File this report' />
+
+</form>

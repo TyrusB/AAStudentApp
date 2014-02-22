@@ -40,6 +40,7 @@ group :development do
   gem 'binding_of_caller'
 end
 
+gem 'annotate'
 # Use unicorn as the app server
 # gem 'unicorn'
 

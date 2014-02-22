@@ -11,18 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222054232) do
+ActiveRecord::Schema.define(version: 20140222071516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: true do |t|
-    t.string   "email"
-    t.string   "username"
-    t.string   "session_token"
-    t.string   "password_digest"
+  create_table "daily_reports", force: true do |t|
+    t.integer  "week"
+    t.integer  "day"
+    t.boolean  "finished_exercises"
+    t.boolean  "read_solutions"
+    t.boolean  "read_tomorrows_readings"
+    t.integer  "rating_of_understanding"
+    t.string   "easiest_concept"
+    t.string   "hardest_concept"
+    t.string   "pair_name"
+    t.integer  "pair_rating"
+    t.text     "pair_comments"
+    t.text     "daily_comments"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "daily_reports", ["day"], name: "index_daily_reports_on_day", using: :btree
+  add_index "daily_reports", ["user_id"], name: "index_daily_reports_on_user_id", using: :btree
+  add_index "daily_reports", ["week", "day", "user_id"], name: "index_daily_reports_on_week_and_day_and_user_id", unique: true, using: :btree
+  add_index "daily_reports", ["week"], name: "index_daily_reports_on_week", using: :btree
+
+  create_table "users", force: true do |t|
+    t.string   "email",           null: false
+    t.string   "name",            null: false
+    t.string   "session_token",   null: false
+    t.string   "password_digest", null: false
+    t.integer  "ta_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
+  add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
+  add_index "users", ["ta_id"], name: "index_users_on_ta_id", using: :btree
 
 end
