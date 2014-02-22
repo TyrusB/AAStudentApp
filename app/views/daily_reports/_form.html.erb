@@ -28,19 +28,22 @@
   <br>
 
   <p>Finished Daily Exercises?</p>
-  <input type='radio' name='daily_report[finished_exercises]' value='t'
-    <%= 'checked="checked"' if daily_report.finished_exercises == 't' %>>True<br />
-  <input type='radio' name='daily_report[finished_exercises]' value='f'
-     <%= 'checked="checked"' if daily_report.finished_exercises == 'f' %>>False<br />
+  <input type='radio' name='daily_report[finished_exercises]' value='true'
+    <%= 'checked="checked"' if daily_report.finished_exercises == true %>>True<br />
+  <input type='radio' name='daily_report[finished_exercises]' value='false'
+     <%= 'checked' if daily_report.finished_exercises == false %>>False<br />
 
-    <!-- TO DO... implement radio button persistence. Above doesn't work -->
   <p>Read Solutions?</p>
-  <input type='radio' name='daily_report[read_solutions]' value='t'>True<br />
-  <input type='radio' name='daily_report[read_solutions]' value='f'>False<br />
+  <input type='radio' name='daily_report[read_solutions]' value='t'
+    <%= 'checked="checked"' if daily_report.read_solutions == true %>>True<br />
+  <input type='radio' name='daily_report[read_solutions]' value='f'
+    <%= 'checked' if daily_report.read_solutions == false %>>False<br />
 
   <p>Read Tomorrow's Readings?</p>
-  <input type='radio' name='daily_report[read_tomorrows_readings]' value='t'>True<br />
-  <input type='radio' name='daily_report[read_tomorrows_readings]' value='f'>False<br />
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='t'
+    <%= 'checked="checked"' if daily_report.read_solutions == true %>>True<br />
+  <input type='radio' name='daily_report[read_tomorrows_readings]' value='f'
+    <%= 'checked' if daily_report.read_tomorrows_readings == false %>>False<br />
   <br>
 
   <label for="daily_report_rating_of_understanding">Rating of your understanding of today's material:</label>
