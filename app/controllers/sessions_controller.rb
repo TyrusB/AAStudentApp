@@ -13,9 +13,9 @@ class SessionsController < ApplicationController
     if @user
       login_user!(@user)
       flash[:success] = "Logged in!"
-      # REDIRECT GOES HERE - throws error for now
+      redirect_to root_url
     else
-      flash[:errors] = @user.errors.full_messages
+      flash.now[:errors] = ["Invalid credentials"]
       render :new
     end
   end
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     @user = User.find(params[:id])
 
     logout_user!(@user)
-    redirect_to new_session_url
+    redirect_to root_url
   end
 
 end

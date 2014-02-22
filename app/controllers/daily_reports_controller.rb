@@ -10,7 +10,7 @@ class DailyReportsController < ApplicationController
 
     if @daily_report.save
       flash[:success] = "Report logged"
-      # REDIRECT SOMEWHERE
+      redirect_to :root
     else
       flash[:errors] = @daily_report.errors.full_messages
       render :new
@@ -27,7 +27,7 @@ class DailyReportsController < ApplicationController
 
     if @daily_report.update_attributes(report_params)
       flash[:success] = "Report successfully edited"
-      #REDIRECT
+      redirect_to :root
     else
       flash[:errors] = @daily_report.errors.full_messages
     end
