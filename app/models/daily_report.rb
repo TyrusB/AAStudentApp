@@ -21,9 +21,12 @@
 #
 
 class DailyReport < ActiveRecord::Base
-  validates :week, :day, :finished_exercises, :read_solutions, :read_tomorrows_readings,
-    :rating_of_understanding, :easiest_concept, :hardest_concept, :pair_name,
-    :pair_rating, :pair_comments, :daily_comments, :user_id, presence: true
+  validates :week, :day, :rating_of_understanding, :easiest_concept,
+          :hardest_concept, :pair_name, :pair_rating, :pair_comments,
+          :daily_comments, :user_id, presence: true
+
+  validates :finished_exercises, :read_solutions, :read_tomorrows_readings,
+            inclusion: { in: [true, false] }
 
   belongs_to :user
 
