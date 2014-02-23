@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
                   :through => :assigned_students,
                   :source => :daily_reports
 
+  has_many :report_comments
 
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)

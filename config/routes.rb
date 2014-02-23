@@ -10,9 +10,9 @@ AAStudentApp::Application.routes.draw do
       resources :comments, :only => [:create]
     end
   end
-
-
   resources :users
   resources :daily_reports
+  resources :report_comments, :only => [:create, :destroy]
+
 
 end

@@ -59,6 +59,11 @@ t.text     "daily_comments" -->
 <p><%= @daily_report.daily_comments %></p>
 <br>
 
-<%# render @DRComments %>
+<% if admin? %>
+  <%= render 'comment_form', :daily_report => @daily_report, :ta => @ta %>
+<% end %>
+
+<p> Instructor Comments:</p>
+<%= render @report_comments %>
 
 <%= link_to "<<", daily_reports_url %>

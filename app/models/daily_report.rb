@@ -30,6 +30,7 @@ class DailyReport < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :report_comments, -> {order("created_at DESC")}
 
   def week_day
     "Week #{self.week}- Day #{self.day}"

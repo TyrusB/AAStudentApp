@@ -1,0 +1,10 @@
+<p>Add a new comment:</p>
+<form action='<%= report_comments_url %>' method='post'>
+  <input type='hidden' name="authenticity_token" value='<%= form_authenticity_token %>'>
+
+  <input type='hidden' name="report_comment[ta_id]" value='<%= ta.id %>'>
+  <input type='hidden' name="report_comment[daily_report_id]" value='<%= daily_report.id %>'>
+
+  <textarea cols='50' rows='8' name='report_comment[body]'></textarea>
+  <input type='submit'>
+</form>

@@ -45,7 +45,9 @@ class DailyReportsController < ApplicationController
 
   def show
     @daily_report = DailyReport.find(params[:id])
-    # @DRComments = @daily_report.comments
+    @report_comments = @daily_report.report_comments
+    @ta = current_user if admin?
+
     render :show
   end
   private

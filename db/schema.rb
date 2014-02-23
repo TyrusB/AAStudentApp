@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222220539) do
+ActiveRecord::Schema.define(version: 20140223002945) do
 
   create_table "annotations", force: true do |t|
     t.integer  "source_file_id"
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(version: 20140222220539) do
   add_index "daily_reports", ["user_id"], name: "index_daily_reports_on_user_id"
   add_index "daily_reports", ["week", "day", "user_id"], name: "index_daily_reports_on_week_and_day_and_user_id", unique: true
   add_index "daily_reports", ["week"], name: "index_daily_reports_on_week"
+
+  create_table "report_comments", force: true do |t|
+    t.text     "body",            null: false
+    t.integer  "daily_report_id", null: false
+    t.integer  "ta_id",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "report_comments", ["daily_report_id"], name: "index_report_comments_on_daily_report_id"
+  add_index "report_comments", ["ta_id"], name: "index_report_comments_on_ta_id"
 
   create_table "source_files", force: true do |t|
     t.string   "file_path",     null: false
