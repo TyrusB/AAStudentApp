@@ -25,4 +25,19 @@ class AssessmentsController < ApplicationController
     @assessments = Assessment.where(:cohort_id => current_user.cohort_id)
   end
 
+  def download_zip
+    @assessment = Assessment.find(params[:id])
+    send_file @assessment.zip_path
+  end
+
+  def receive_zip
+    @assessment = Assessment.find(params[:id])
+    name = @assessment.zip_path
+    directory = "uploads"
+    # create the file path
+    path = File.join(directory, name)
+    # write the file
+    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
+  end
+
 end

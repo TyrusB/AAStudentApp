@@ -14,8 +14,4 @@ class SubmissionsController < ApplicationController
       redirect_to :root
     end
   end
-
-  private
-
-
 end
